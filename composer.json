@@ -1,0 +1,43 @@
+{
+    "name": "derek/jubilee-laravel-auth",
+    "description": "jubilee auth library for laravel",
+    "version": "1.0.0",
+    "type": "library",
+    "keywords": ["jubilee", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Derekmeng",
+            "email": "a0985265734@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jubilee\\Auth\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jubilee\\Auth\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "fzaninotto/faker": "^1.9",
+        "laravel/framework": "^5.0",
+        "laravel/socialite": "^4.4"
+    },
+    "require-dev": {
+        "laravel/framework": "^5.0",
+        "phpunit/phpunit": "~6.0"
+    },
+    "extra": {
+
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
