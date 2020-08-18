@@ -6,10 +6,10 @@ Route::group([
     'prefix'     => 'auth/',
     'as'         => 'auth.',
     'namespace'  => 'Jubilee\Auth\Http\Controllers',
-    'middleware' => ['web']
+    'middleware' => 'web'
 ], function () {
     Route::get('/login', 'AuthenticateController@loginIndex')->name('login');
-    Route::post('/', 'AuthenticateController@login')->name('store')->middleware('web');
-    Route::post('/register', 'AuthenticateController@register')->name('register')->middleware('web');
-    Route::get('/logout', 'AuthenticateController@logout')->name('logout')->middleware(['web', 'auth']);
+    Route::post('/', 'AuthenticateController@login')->name('store');
+    Route::post('/register', 'AuthenticateController@register')->name('register');
+    Route::get('/logout', 'AuthenticateController@logout')->name('logout')->middleware('auth');
 });
