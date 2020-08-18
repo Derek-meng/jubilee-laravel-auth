@@ -32,7 +32,11 @@
         "phpunit/phpunit": "~6.0"
     },
     "extra": {
-
+        "laravel": {
+            "providers": [
+                "Jubilee\\Auth\\AuthProvider"
+            ]
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
