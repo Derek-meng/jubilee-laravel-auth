@@ -2,6 +2,7 @@
 
 namespace Jubilee\Auth\Services;
 
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Hash;
 use Jubilee\Auth\Entries\User;
 use Jubilee\Auth\Http\Requests\Facebook\FeedBackRequest;
@@ -35,7 +36,7 @@ class FacebookCitizenService
      * @param UserRepo $repo
      * @return User|null
      */
-    public function attachUsers(FeedBackRequest $request, UserRepo $repo): ?User
+    public function attachUsers(FeedBackRequest $request, UserRepo $repo, StatefulGuard $guard): ?User
     {
         $citizen = null;
         if (is_null($request->getErrorCode()) && is_null($request->getErrorMessage())) {
@@ -47,6 +48,7 @@ class FacebookCitizenService
                 'password'    => Hash::make(uniqid()),
                 'facebook_id' => $user->getId(),
             ]);
+            $guard->login($citizen);
         }
 
         return $citizen;

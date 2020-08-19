@@ -1,4 +1,4 @@
-@extends('base')
+@extends('auth.base')
 @section('content')
     <form action="{{route('auth.register')}}" method="post">
         <div class="form-group">
@@ -19,5 +19,7 @@
         {{ csrf_field() }}
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{{config('custom_auth.home_url')}}" class="btn">Back</a>
+
     </form>
 @endsection

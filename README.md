@@ -32,15 +32,18 @@ This package has configuration files which can be configured to your needs.
 After run command you can find config file in config/custom_auth.php and config/facebook.php, 
 in this file you can change logged or registered redirect url and setting 
 facebook client_id and client_secret and redirect_url(host_url/auth/facebook/feedback)
+add env 
 
-
+    JUBILEE_AUTHED_HOME_URL=
+    JUBILEE_FACEBOOK_CLIENT_ID=
+    JUBILEE_FACEBOOK_CLIENT_REDIRECT_URL=
 
 Database
 -
-Setup your database migrations for the auth user table
+Setup your database migrations for the auth user table and Seed
 
     php artisan migrate 
-      
+    php artisan db:seed --class=CreateUsersTable
         
 
       

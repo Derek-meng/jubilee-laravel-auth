@@ -45,7 +45,7 @@ class AuthenticateController extends Controller
         $user = $this->service->login($request, Auth::guard());
 
         return is_null($user) ? redirect()->back()->withErrors('未存在帳號,或密碼錯誤') :
-            redirect()->to(config('authed_redirect_url'));
+            redirect()->to(config('custom_auth.home_url'));
     }
 
     /**

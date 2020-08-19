@@ -1,4 +1,4 @@
-@extends('base')
+@extends('auth.base')
 @section('script')
     <script>
         window.fbAsyncInit = function () {
