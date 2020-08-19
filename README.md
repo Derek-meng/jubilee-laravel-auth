@@ -30,7 +30,8 @@ This package has configuration files which can be configured to your needs.
     php artisan vendor:publish --provider="Jubilee\Auth\FacebookProvider"
 
 After run command you can find config file in config/custom_auth.php and config/facebook.php, 
-in this file you can change logged or registered redirect url and setting facebook client_id and client_secret
+in this file you can change logged or registered redirect url and setting 
+facebook client_id and client_secret and redirect_url(host_url/auth/facebook/feedback)
 
 
 
