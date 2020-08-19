@@ -3,11 +3,12 @@
 namespace Jubilee\Auth\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Controller;
 use Jubilee\Auth\Http\Requests\Facebook\FeedBackRequest;
 use Jubilee\Auth\Repositories\UserRepo;
 use Jubilee\Auth\Services\FacebookCitizenService;
 
-class FacebookController
+class FacebookController extends Controller
 {
     /** @var FacebookCitizenService $service */
     private $service;
