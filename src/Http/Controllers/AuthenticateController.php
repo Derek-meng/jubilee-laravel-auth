@@ -62,7 +62,7 @@ class AuthenticateController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $user = $this->service->register($request);
+        $user = $this->service->register($request, Auth::guard());
 
         return is_null($user) ? redirect()->back()->withErrors('創建失敗') : redirect()->to(config('authed_redirect_url'));
     }
@@ -76,6 +76,6 @@ class AuthenticateController extends Controller
         $guard = Auth::guard();
         $guard->logout();
 
-        return redirect()->to(route('auth.login'));
+        return redirect()->to(config('custom_auth.home_url'));
     }
 }
