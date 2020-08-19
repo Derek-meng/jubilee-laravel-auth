@@ -14,7 +14,10 @@ use Illuminate\Database\Eloquent\Builder as ORMBuilder;
  * @method static ORMBuilder whereIn($column, $value = null, $boolean = 'and', $not = false)
  * @method static ORMBuilder whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1)
  * @method static ORMBuilder with($relations)
+ * @method static $this updateOrCreate(array $attributes, array $values = [])
  * @mixin ORMBuilder
+ * @see https://docs.phpdoc.org/latest/references/phpdoc/index.html
+ * @see https://laravel.com/api/5.5/Illuminate/Database/Eloquent/Builder.html 更多model靜態方法參照
  */
 trait ORMDocHelp
 {

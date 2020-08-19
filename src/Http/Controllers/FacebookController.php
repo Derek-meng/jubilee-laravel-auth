@@ -3,25 +3,38 @@
 namespace Jubilee\Auth\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
-use Laravel\Socialite\Facades\Socialite;
-use Laravel\Socialite\Two\FacebookProvider;
+use Jubilee\Auth\Http\Requests\Facebook\FeedBackRequest;
+use Jubilee\Auth\Repositories\UserRepo;
+use Jubilee\Auth\Services\FacebookCitizenService;
 
 class FacebookController
 {
+    /** @var FacebookCitizenService $service */
+    private $service;
+
+    /**
+     * FacebookController constructor.
+     * @param FacebookCitizenService $service
+     */
+    public function __construct(FacebookCitizenService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * @return RedirectResponse
      */
     public function signIn(): RedirectResponse
     {
-        /** @var FacebookProvider $driver */
-        $driver = Socialite::driver('facebook');
-
-        return $driver->scopes(['user_friends'])
-            ->redirectUrl(config('services.facebook.redirect'))
-            ->redirect();
+        return $this->service->client()->redirect();
     }
 
-    public function feedback()
+    /**
+     * @param FeedBackRequest $request
+     * @param FacebookCitizenService $service
+     */
+    public function feedback(FeedBackRequest $request, FacebookCitizenService $service)
     {
+        $service->attachUsers($request, app(UserRepo::class));
     }
 }

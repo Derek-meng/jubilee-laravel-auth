@@ -8,8 +8,9 @@ Route::group([
     'namespace'  => 'Jubilee\Auth\Http\Controllers',
     'middleware' => 'web'
 ], function () {
-    Route::get('/login', 'AuthenticateController@loginIndex')->name('login');
+    Route::get('/login', 'AuthenticateController@loginView')->name('login');
     Route::post('/', 'AuthenticateController@login')->name('store');
+    Route::get('/register', 'AuthenticateController@registerView');
     Route::post('/register', 'AuthenticateController@register')->name('register');
     Route::get('/logout', 'AuthenticateController@logout')->name('logout')->middleware('auth');
 });

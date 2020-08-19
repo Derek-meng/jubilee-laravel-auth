@@ -9,8 +9,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Jubilee\Auth\Http\Requests\LoginRequest;
-use Jubilee\Auth\Http\Requests\RegisterRequest;
+use Jubilee\Auth\Http\Requests\Auth\LoginRequest;
+use Jubilee\Auth\Http\Requests\Auth\RegisterRequest;
 use Jubilee\Auth\Services\AuthenticateService;
 
 class AuthenticateController extends Controller
@@ -30,7 +30,7 @@ class AuthenticateController extends Controller
     /**
      * @return Factory|View
      */
-    public function loginIndex()
+    public function loginView()
     {
         return view('auth.login');
     }
@@ -45,7 +45,15 @@ class AuthenticateController extends Controller
         $user = $this->service->login($request, Auth::guard());
 
         return is_null($user) ? redirect()->back()->withErrors('未存在帳號,或密碼錯誤') :
-            redirect()->to(route('$name'));
+            redirect()->to(config('authed_redirect_url'));
+    }
+
+    /**
+     * @return Factory|View
+     */
+    public function registerView()
+    {
+        return view('auth.register');
     }
 
     /**
@@ -56,7 +64,7 @@ class AuthenticateController extends Controller
     {
         $user = $this->service->register($request);
 
-        return is_null($user) ? redirect()->back()->withErrors('創建失敗') : redirect()->to(route('$name'));
+        return is_null($user) ? redirect()->back()->withErrors('創建失敗') : redirect()->to(config('authed_redirect_url'));
     }
 
     /**

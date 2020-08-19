@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Jubilee\Auth\Http\Requests\RegisterRequest;
+use Jubilee\Auth\Http\Requests\Auth\RegisterRequest;
 use Jubilee\Auth\Services\AuthenticateService;
 
 class UserSeeder extends Seeder

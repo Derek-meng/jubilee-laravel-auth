@@ -1,8 +1,9 @@
 <?php
 
-namespace Jubilee\Auth\Http\Requests;
+namespace Jubilee\Auth\Http\Requests\Auth;
 
 use Illuminate\Validation\Rule;
+use Jubilee\Auth\Http\Requests\BaseFormRequest;
 
 class RegisterRequest extends BaseFormRequest
 {

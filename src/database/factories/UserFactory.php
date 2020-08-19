@@ -18,7 +18,6 @@ use Jubilee\Auth\Entries\User;
 $factory = app(Factory::class);
 $factory->define(User::class, function (Faker\Generator $faker) {
     return [
-        'name'           => $faker->name,
         'email'          => $faker->unique()->safeEmail,
         'password'       => Hash::make($faker->password), // secret
         'remember_token' => Str::random(10),

@@ -7,8 +7,8 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Jubilee\Auth\Entries\User;
-use Jubilee\Auth\Http\Requests\LoginRequest;
-use Jubilee\Auth\Http\Requests\RegisterRequest;
+use Jubilee\Auth\Http\Requests\Auth\LoginRequest;
+use Jubilee\Auth\Http\Requests\Auth\RegisterRequest;
 use Jubilee\Auth\Repositories\UserRepo;
 
 class AuthenticateService
@@ -52,6 +52,8 @@ class AuthenticateService
         $user = $this->repo->findByEmail($request->getEmail());
         if (!is_null($user) && Hash::check($request->getPassword(), $user->password)) {
             $guard->login($user);
+        } else {
+            $user = null;
         }
 
         return $user;

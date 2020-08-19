@@ -1,6 +1,8 @@
 <?php
 
-namespace Jubilee\Auth\Http\Requests;
+namespace Jubilee\Auth\Http\Requests\Auth;
+
+use Jubilee\Auth\Http\Requests\BaseFormRequest;
 
 class LoginRequest extends BaseFormRequest
 {

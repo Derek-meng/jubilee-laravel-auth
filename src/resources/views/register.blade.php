@@ -11,6 +11,11 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="請輸入密碼">
         </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword1"
+                   placeholder="Password">
+        </div>
         {{ csrf_field() }}
 
         <button type="submit" class="btn btn-primary">Submit</button>
