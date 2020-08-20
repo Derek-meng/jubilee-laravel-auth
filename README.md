@@ -18,7 +18,7 @@ Service Provider
 -
 If you are using Laravel 5.5 or higher the package will automatically register itself. 
 
-Otherwise you need to add Jubilee\Click108\TwelveConstellationsProvider to 
+Otherwise you need to add Jubilee\Auth\AuthProvider and Jubilee\Auth\FacebookProvider to 
 
 your [providers](https://laravel.com/docs/master/providers#registering-providers) array.
  
