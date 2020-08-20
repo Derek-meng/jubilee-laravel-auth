@@ -12,8 +12,9 @@ class UserSeeder extends Seeder
             'email'    => 'a0985265734@gmail.com',
             'password' => '123456',
         ]);
+        /** @var AuthenticateService $service */
         $service = app(AuthenticateService::class);
-        $service->register($request);
+        $service->register($request, null);
     }
 }
 

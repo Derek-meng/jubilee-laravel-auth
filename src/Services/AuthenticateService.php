@@ -61,16 +61,17 @@ class AuthenticateService
 
     /**
      * @param RegisterRequest $request
+     * @param StatefulGuard $guard
      * @return User|null
      */
-    public function register(RegisterRequest $request, StatefulGuard $guard): ?User
+    public function register(RegisterRequest $request, ?StatefulGuard $guard): ?User
     {
         $attribute = [
             'email'    => $request->getEmail(),
             'password' => Hash::make($request->getPassword()),
         ];
         $user = $this->repo->create($attribute);
-        if (!is_null($user)) {
+        if (!is_null($user) && !is_null($guard)) {
             $guard->login($user);
         }
 
