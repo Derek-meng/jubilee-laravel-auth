@@ -40,7 +40,7 @@ class RegisterRequest extends BaseFormRequest
     {
         return [
             'email.required'     => 'email是必填欄位',
-            'email.unique'       => 'email已經被註冊過',
+            'email.string'       => 'email是字串類型',
             'password.required'  => 'password是必填欄位',
             'password.min'       => 'password小於5個字',
             'password.alpha_num' => 'password必須包含數字及字母',

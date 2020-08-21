@@ -1,7 +1,7 @@
 {
     "name": "derek/jubilee-laravel-auth",
     "description": "jubilee auth library for laravel",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "type": "library",
     "keywords": ["jubilee", "laravel"],
     "license": "MIT",
