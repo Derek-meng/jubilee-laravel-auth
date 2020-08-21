@@ -34,6 +34,7 @@ class FacebookCitizenService
     /**
      * @param FeedBackRequest $request
      * @param UserRepo $repo
+     * @param StatefulGuard $guard
      * @return User|null
      */
     public function attachUsers(FeedBackRequest $request, UserRepo $repo, StatefulGuard $guard): ?User
@@ -41,14 +42,30 @@ class FacebookCitizenService
         $citizen = null;
         if (is_null($request->getErrorCode()) && is_null($request->getErrorMessage())) {
             $user = $this->client->fields(['email'])->user();
-            $citizen = $repo->updateOrCreate([
-                'email' => $user->getEmail(),
-            ], [
-                'email'       => $user->getEmail(),
-                'password'    => Hash::make(uniqid()),
-                'facebook_id' => $user->getId(),
-            ]);
-            $guard->login($citizen);
+            $citizen = $repo->firstOrNew(
+                [
+                    'email' => $user->getEmail()
+                ], [
+                    'email' => $user->getEmail(),
+                ]
+            );
+            $isSuccess = false;
+            if (!is_null($citizen)) {
+                $attributes = !is_null($citizen->password) ?
+                    [
+                        'facebook_id' => $user->getId(),
+                    ] :
+                    [
+                        'facebook_id' => $user->getId(),
+                        'password'    => Hash::make(uniqid())
+                    ];
+                $isSuccess = $repo->update($citizen, $attributes);
+            }
+            if ($isSuccess) {
+                $guard->login($citizen);
+            } else {
+                $citizen = null;
+            }
         }
 
         return $citizen;

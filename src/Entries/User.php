@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
  * @package Jubilee\Auth\Entries
  * @property string name
  * @property string email
- * @property string password
+ * @property string|null password
  */
 class User extends CitizenORM
 {

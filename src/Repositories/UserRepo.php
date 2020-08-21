@@ -43,15 +43,35 @@ class UserRepo implements IAuthProvider
     }
 
     /**
+     * @param User $user
+     * @param array $attributes
+     * @return bool
+     */
+    public function update(User $user, array $attributes): bool
+    {
+        try {
+            /** @var User|null $user */
+            $user = $user->fill($attributes);
+            $result = $user->save();
+        } catch (\Throwable $e) {
+            LaravelLoggerUtil::loggerException($e);
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
      * @param array $attributes
      * @param array $values
      * @return User|null
      */
-    public function updateOrCreate(array $attributes, array $values = []): ?User
+    public function firstOrNew(array $attributes, array $values = []): ?User
     {
         try {
-            $user = User::updateOrCreate($attributes, $values);
-        } catch (Throwable $e) {
+            /** @var User|null $user */
+            $user = User::firstOrNew($attributes, $values);
+        } catch (\Throwable $e) {
             LaravelLoggerUtil::loggerException($e);
             $user = null;
         }

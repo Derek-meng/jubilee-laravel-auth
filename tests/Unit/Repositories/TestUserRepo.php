@@ -76,19 +76,28 @@ class TestUserRepo extends TestCase
         $this->assertEquals($password, $user->password);
     }
 
-    public function testCreateOrUpdate()
+    public function testUpdate()
     {
-        $email = '654654678';
+        $user = $this->factory->create(User::class);
         $password = '79879894';
         $repo = app(UserRepo::class);
-        $user = $repo->updateOrCreate([
-            'email' => $email
-        ], [
-            'email'    => $email,
-            'password' => $password
-        ]);
-        $this->assertInstanceOf(User::class, $user);
-        $this->assertEquals($email, $user->email);
-        $this->assertEquals($password, $user->password);
+        $condition = $repo->update(
+            $user,
+            [
+                'password' => $password
+            ]
+        );
+        $this->assertTrue($condition);
+    }
+
+    public function testFirstOrNew()
+    {
+        $repo = app(UserRepo::class);
+        $actual = $repo->firstOrNew(
+            [
+                'email' => '123456789'
+            ]
+        );
+        $this->assertInstanceOf(User::class, $actual);
     }
 }
