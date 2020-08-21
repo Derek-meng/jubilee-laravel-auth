@@ -66,13 +66,17 @@ class AuthenticateService
      */
     public function register(RegisterRequest $request, ?StatefulGuard $guard): ?User
     {
-        $attribute = [
-            'email'    => $request->getEmail(),
-            'password' => Hash::make($request->getPassword()),
-        ];
-        $user = $this->repo->create($attribute);
-        if (!is_null($user) && !is_null($guard)) {
-            $guard->login($user);
+        $isExist = $this->repo->isExistUserByEmail($request->getEmail());
+        $user = null;
+        if (!$isExist) {
+            $attribute = [
+                'email'    => $request->getEmail(),
+                'password' => Hash::make($request->getUserPassword()),
+            ];
+            $user = $this->repo->create($attribute);
+            if (!is_null($user) && !is_null($guard)) {
+                $guard->login($user);
+            }
         }
 
         return $user;

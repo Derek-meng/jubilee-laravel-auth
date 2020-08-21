@@ -67,10 +67,13 @@ class TestAuthenticateService extends TestCase
         $repo->method('create')->willReturn($userMock);
         $service = new AuthenticateService($repo);
         Hash::shouldReceive('make')->once()->andReturn('48797949');
-        $user = $service->register(new RegisterRequest([
-            'email'    => '123456789@gmail',
-            'password' => '78978979'
-        ]));
+        $user = $service->register(
+            new RegisterRequest([
+                'email'    => '123456789@gmail',
+                'password' => '78978979'
+            ]),
+            null
+        );
         $this->assertInstanceOf(User::class, $user);
     }
 

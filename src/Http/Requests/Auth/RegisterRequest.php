@@ -2,7 +2,6 @@
 
 namespace Jubilee\Auth\Http\Requests\Auth;
 
-use Illuminate\Validation\Rule;
 use Jubilee\Auth\Http\Requests\BaseFormRequest;
 
 class RegisterRequest extends BaseFormRequest
@@ -29,7 +28,7 @@ class RegisterRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'email'    => 'required|' . Rule::unique('users', 'email'),
+            'email'    => 'required|string',
             'password' => 'required|min:5|alpha_num|confirmed',
         ];
     }

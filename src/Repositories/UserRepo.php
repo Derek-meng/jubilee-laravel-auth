@@ -78,4 +78,20 @@ class UserRepo implements IAuthProvider
 
         return $user;
     }
+
+    /**
+     * @param string $email
+     * @return bool
+     */
+    public function isExistUserByEmail(string $email): bool
+    {
+        try {
+            $isExist = User::where('email', $email)->exists();
+        } catch (\Throwable $e) {
+            LaravelLoggerUtil::loggerException($e);
+            $isExist = false;
+        }
+
+        return $isExist;
+    }
 }

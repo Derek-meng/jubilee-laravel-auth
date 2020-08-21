@@ -64,7 +64,8 @@ class AuthenticateController extends Controller
     {
         $user = $this->service->register($request, Auth::guard());
 
-        return is_null($user) ? redirect()->back()->withErrors('創建失敗') : redirect()->to(config('authed_redirect_url'));
+        return is_null($user) ? redirect()->back()->withErrors('帳號已存在') :
+            redirect()->to(config('authed_redirect_url'));
     }
 
     /**

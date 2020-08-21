@@ -100,4 +100,13 @@ class TestUserRepo extends TestCase
         );
         $this->assertInstanceOf(User::class, $actual);
     }
+
+    public function testIsExits()
+    {
+        /** @var User $user */
+        $user = $this->factory->create(User::class);
+        $repo = app(UserRepo::class);
+        $isExist = $repo->isExistUserByEmail($user->email);
+        $this->assertTrue($isExist);
+    }
 }
